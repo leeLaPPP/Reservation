@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <Chronometer
+            android:layout_marginTop="50dp"
             android:id="@+id/chronometer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,13 +40,15 @@
             android:id="@+id/radioDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="날짜 설정"/>
+            android:text="날짜 설정"
+            android:visibility="invisible"/>
 
         <RadioButton
             android:id="@+id/radioTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="시간 설정" />
+            android:text="시간 설정"
+            android:visibility="invisible"/>
     </RadioGroup>
 
     <LinearLayout
@@ -149,6 +152,12 @@
             android:text="분"
             >
         </TextView>
+        <Button
+            android:id="@+id/btnreset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:text="리셋" />
     </LinearLayout>
 
 </LinearLayout>

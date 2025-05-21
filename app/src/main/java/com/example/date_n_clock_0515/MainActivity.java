@@ -1,5 +1,6 @@
 package com.example.date_n_clock_0515;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -16,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Chronometer chronometer;
-    private Button btnStart, btnFinish;
+    private Button btnStart, btnFinish,btnreset;
     private RadioGroup radioGroup;
     private RadioButton radioDate, radioTime;
     private TimePicker timePicker;
@@ -25,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
     
     // 선택된 날짜를 저장할 변수들
     private int selectYear, selectMonth, selectDay;
+    private void result() {
+        year.setText("0000");
+        month.setText("00");
+        day.setText("00");
+        hour.setText("00");
+        minute.setText("00");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +53,16 @@ public class MainActivity extends AppCompatActivity {
         hour = findViewById(R.id.hour);
         minute = findViewById(R.id.minute);
         chronometer = findViewById(R.id.chronometer1);
+        btnreset = findViewById(R.id.btnreset);
 
         timePicker.setVisibility(View.INVISIBLE);
         datePicker.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
 
         radioTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 chronometer.setBase(SystemClock.elapsedRealtime());
                 chronometer.start();
+                radioDate.setVisibility(View.VISIBLE);
+                radioTime.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -82,6 +100,20 @@ public class MainActivity extends AppCompatActivity {
                 day.setText(Integer.toString(selectDay));
                 hour.setText(Integer.toString(timePicker.getHour()));
                 minute.setText(Integer.toString(timePicker.getMinute()));
+            }
+        });
+
+        btnreset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                radioGroup.clearCheck();
+                radioDate.setVisibility(View.INVISIBLE);
+                radioTime.setVisibility(View.INVISIBLE);
+                timePicker.setVisibility(View.INVISIBLE);
+                datePicker.setVisibility(View.INVISIBLE);
+                chronometer.stop();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                result();
             }
         });
 
